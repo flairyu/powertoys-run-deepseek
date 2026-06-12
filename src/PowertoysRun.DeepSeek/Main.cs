@@ -53,12 +53,21 @@ public class Main : IPlugin
 
         if (response.IsShort)
         {
+            var answer = response.Answer;
             return [new Result
             {
-                Title = response.Answer,
-                SubTitle = "[DeepSeek] — Ctrl+Shift+C 复制",
+                Title = answer,
+                SubTitle = "[DeepSeek] — Enter 复制到剪贴板",
                 IcoPath = IconPathDark,
-                Action = _ => true
+                Action = _ =>
+                {
+                    try
+                    {
+                        System.Windows.Forms.Clipboard.SetText(answer);
+                    }
+                    catch { }
+                    return true;
+                }
             }];
         }
 
@@ -90,7 +99,7 @@ public class Main : IPlugin
             new Result
             {
                 Title = "DeepSeek 查询 (ds)",
-                SubTitle = "输入问题，按 Enter 获取 DeepSeek 回答。短回答直接显示，长回答跳转浏览器。",
+                SubTitle = "输入问题，按 Enter 获取回答。短回答 Enter 复制到剪贴板，长回答跳转浏览器。",
                 IcoPath = IconPathDark,
                 Score = 100
             },

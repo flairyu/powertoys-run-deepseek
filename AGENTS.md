@@ -1,7 +1,7 @@
 # AGENTS.md
 
 ## 项目概述
-PowerToys Run 插件，通过快速输入框调用 DeepSeek API 获取回应。默认使用 `deepseek-chat` 模型，短回答直接显示，长回答跳转浏览器。
+PowerToys Run 插件，通过快速输入框调用 DeepSeek API 获取回应。默认使用 `deepseek-v4-flash` 模型，短回答直接显示，长回答跳转浏览器。
 
 ## 技术栈
 - C# / .NET 9（目标 `net9.0-windows`）
@@ -33,7 +33,7 @@ src/PowertoysRun.DeepSeek/
 
 ## 关键约定
 - 插件激活关键词：`ds`（定义在 plugin.json ActionKeyword）
-- API Key 配置：在插件目录下创建 `settings.json`，格式：`{"ApiKey": "sk-xxx", "Model": "deepseek-chat"}`
+- API Key 配置：在插件目录下创建 `settings.json`，格式：`{"ApiKey": "sk-xxx", "Model": "deepseek-v4-flash"}`
 - `Main` 类必须有 `static PluginID` 属性（值匹配 plugin.json 中的 ID），否则 PowerToys 初始化失败
 - 短回答判定：回答长度 ≤ 200 字符且不含换行符
 - 长回答：生成临时 HTML 文件并通过 `Process.Start` 在浏览器中打开

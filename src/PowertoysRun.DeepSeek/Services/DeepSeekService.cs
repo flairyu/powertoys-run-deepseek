@@ -13,7 +13,7 @@ public class DeepSeekService
         Timeout = TimeSpan.FromSeconds(30)
     };
 
-    private const string DefaultModel = "deepseek-chat";
+    private const string DefaultModel = "deepseek-v4-flash";
     private const int ShortResponseMaxLength = 200;
 
     private string _apiKey = string.Empty;

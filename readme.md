@@ -1,6 +1,6 @@
 # PowerToys Run for DeepSeek
 
-一个 PowerToys Run 插件，在快速输入框输入内容后，直接从 DeepSeek API 获取 AI 回应。默认使用 `deepseek-chat` 模型，短回答直接显示，长回答自动跳转浏览器。
+一个 PowerToys Run 插件，在快速输入框输入内容后，直接从 DeepSeek API 获取 AI 回应。默认使用 `deepseek-v4-flash` 模型，短回答直接显示，长回答自动跳转浏览器。
 
 ## 安装
 
@@ -29,14 +29,14 @@ dotnet build src/PowertoysRun.DeepSeek/PowertoysRun.DeepSeek.csproj -c Release
 ```json
 {
   "ApiKey": "sk-你的DeepSeek-API-Key",
-  "Model": "deepseek-chat"
+  "Model": "deepseek-v4-flash"
 }
 ```
 
 | 字段    | 说明                      | 默认值           |
 | ------- | ------------------------- | ---------------- |
 | ApiKey  | DeepSeek API Key（必填）  | 无               |
-| Model   | 模型名称（可选）          | `deepseek-chat`  |
+| Model   | 模型名称（可选）          | `deepseek-v4-flash`  |
 
 ## 使用
 

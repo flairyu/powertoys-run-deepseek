@@ -3,7 +3,7 @@
   "Name": "DeepSeek",
   "Description": "通过 DeepSeek API 获取 AI 回应，短回答直接显示，长回答跳转浏览器",
   "Author": "flairyu",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "Language": "csharp",
   "Website": "https://github.com/flairyu/powertoys-run-deepseek",
   "ExecuteFileName": "PowertoysRun.DeepSeek.dll",

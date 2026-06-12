@@ -1,4 +1,4 @@
 {
   "ApiKey": "sk-你的DeepSeek-API-Key",
-  "Model": "deepseek-chat"
+  "Model": "deepseek-v4-flash"
 }

@@ -1,4 +1,7 @@
 {
+  "Provider": "deepseek",
   "ApiKey": "sk-你的DeepSeek-API-Key",
-  "Model": "deepseek-v4-flash"
+  "Model": "deepseek-v4-flash",
+  "ZhidaAccessSecret": "你的知乎-Access-Secret",
+  "ZhidaModel": "zhida-fast-1p5"
 }

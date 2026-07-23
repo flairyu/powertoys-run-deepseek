@@ -12,6 +12,9 @@ public class PluginSettings
 
     public string ApiKey { get; set; } = string.Empty;
     public string Model { get; set; } = "deepseek-v4-flash";
+    public string Provider { get; set; } = "deepseek";
+    public string ZhidaAccessSecret { get; set; } = string.Empty;
+    public string ZhidaModel { get; set; } = "zhida-fast-1p5";
 
     private string? _settingsFilePath;
 

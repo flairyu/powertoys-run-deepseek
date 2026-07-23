@@ -10,6 +10,8 @@ public class Main : IPlugin
     private ZhidaService? _zhidaService;
     private Services.PluginSettings? _settings;
     private string _provider = "deepseek";
+    private CancellationTokenSource? _debounceCts;
+    private static readonly TimeSpan DebounceDelay = TimeSpan.FromMilliseconds(2000);
 
     public static string PluginID => "CE0C0B4E-C5A7-4E1A-9F8D-2A3B4C5D6E7F";
     public string Name => "DeepSeek";
@@ -32,6 +34,10 @@ public class Main : IPlugin
 
     public List<Result> Query(Query query)
     {
+        _debounceCts?.Cancel();
+        _debounceCts = new CancellationTokenSource();
+        var debounceToken = _debounceCts.Token;
+
         var search = query.Search?.Trim() ?? string.Empty;
 
         if (string.IsNullOrEmpty(search))
@@ -54,6 +60,15 @@ public class Main : IPlugin
                     SubTitle = "编辑 settings.json 填入你的知乎 Access Secret",
                     IcoPath = IconPathDark
                 }];
+
+            try
+            {
+                Task.Delay(DebounceDelay, debounceToken).GetAwaiter().GetResult();
+            }
+            catch (TaskCanceledException)
+            {
+                return [new Result { Title = $"输入中... {search}", SubTitle = "知乎直答", IcoPath = IconPathDark }];
+            }
 
             var zhidaResponse = _zhidaService.AskAsync(search).GetAwaiter().GetResult();
 
@@ -105,6 +120,15 @@ public class Main : IPlugin
                 SubTitle = "编辑 settings.json 填入你的 API Key",
                 IcoPath = IconPathDark
             }];
+
+        try
+        {
+            Task.Delay(DebounceDelay, debounceToken).GetAwaiter().GetResult();
+        }
+        catch (TaskCanceledException)
+        {
+            return [new Result { Title = $"输入中... {search}", SubTitle = "DeepSeek", IcoPath = IconPathDark }];
+        }
 
         var response = _deepSeekService.AskAsync(search).GetAwaiter().GetResult();
 
